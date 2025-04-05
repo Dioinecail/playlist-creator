@@ -7,9 +7,7 @@ const folderInput = document.querySelector('#music-folder-input');
 const buttonSave = document.querySelector('#btn-save-playlist');
 const playlistNameInput = document.querySelector('#save-playlist-input');
 
-const multiDrag = new MultiDrag();
-
-Sortable.mount(multiDrag);
+Sortable.mount(new MultiDrag());
 
 let currentSortable;
 
