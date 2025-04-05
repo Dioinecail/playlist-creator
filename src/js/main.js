@@ -1,4 +1,4 @@
-import Sortable, { MultiDrag, Swap } from 'sortablejs';
+import Sortable from 'sortablejs';
 
 const mainContainer = document.querySelector('.main-container');
 const dropArea = document.querySelector("#drop-area");
@@ -22,7 +22,6 @@ folderInput.addEventListener('input', (evt) => {
     });
 });
 
-Sortable.mount(new MultiDrag());
 
 function traverseFileTree(item, path) {
     path = path || "";
