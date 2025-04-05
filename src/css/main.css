@@ -27,15 +27,17 @@ body {
 
 .music-folder-input-label {
     font-size: 20px;
-    color: #aaaaaa;
+    color: #fff;
+    width: 250px;
 }
 
-#music-folder-input {
+.input-container {
     outline: none;
-    width: 250px;
+    width: 550px;
     height: 28px;
     border: 1px solid #000;
     border-radius: 4px;
+    padding: 6px;
 }
 
 #drop-area {
@@ -83,22 +85,22 @@ body {
     background-color: #305030;
 }
 
-#btn-save-playlist {
+#btn-save-playlist, #btn-clear-list {
     width: 150px;
-    height: 45px;
-    background-color: #909090;
+    height: 28px;
+    background-color: #bbeeee;
     outline: none;
     border: 1px solid #202020;
     transition-duration: 0.15s;
     border-radius: 8px;
 }
 
-#btn-save-playlist:hover {
+#btn-save-playlist:hover, #btn-clear-list:hover {
     background-color: #cccccc;
     transition-duration: 0.15s;
 }
 
-#btn-save-playlist:active {
+#btn-save-playlist:active, #btn-clear-list:active {
     background-color: #707070;
     transition-duration: 0.15s;
 }

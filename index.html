@@ -5,12 +5,17 @@
 <body>
     <a href="" id="download-container"></a>
     <div class="main-container">
-        <div class="music-folder-input-label">Input music folder path here</div>
-        <input type="text" id="music-folder-input">
-        <div class="save-container" style="display: flex; gap: 4px">
-            <div style="display: flex; align-items: center; color: #ffffff">Playlist Name</div>
-            <input type="text" id="save-playlist-input">
+        <div class="save-container" style="display: flex; gap: 4px; align-items: center;">
+            <div class="music-folder-input-label">Input music folder path here</div>
+            <input type="text" id="music-folder-input" class="input-container" placeholder="Folder Root Path (ex. F:/Music)">
+        </div>
+        <div class="save-container" style="display: flex; gap: 4px; align-items: center;">
+            <div class="music-folder-input-label">Playlist Name</div>
+            <input type="text" id="save-playlist-input" class="input-container" placeholder="sonic adventures (without .txt)">
             <button id="btn-save-playlist">Save Playlist</button>
+        </div>
+        <div class="save-container" style="display: flex; gap: 4px; align-items: center;">
+            <button id="btn-clear-list">Clear Playlist</button>
         </div>
         <div class="drag-drop-container">
             <div id="drop-area">DROP HERE</div>

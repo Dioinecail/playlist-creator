@@ -1,4 +1,4 @@
-import Sortable from 'sortablejs';
+import Sortable, { MultiDrag } from 'sortablejs';
 
 const mainContainer = document.querySelector('.main-container');
 const dropArea = document.querySelector("#drop-area");
@@ -6,6 +6,12 @@ const listArea = document.querySelector('#list-area');
 const folderInput = document.querySelector('#music-folder-input');
 const buttonSave = document.querySelector('#btn-save-playlist');
 const playlistNameInput = document.querySelector('#save-playlist-input');
+
+const multiDrag = new MultiDrag();
+
+Sortable.mount(multiDrag);
+
+let currentSortable;
 
 
 
@@ -22,6 +28,9 @@ folderInput.addEventListener('input', (evt) => {
     });
 });
 
+document.querySelector('#btn-clear-list').addEventListener('click', () => {
+    listArea.innerHTML = '';
+});
 
 function traverseFileTree(item, path) {
     path = path || "";
@@ -54,6 +63,17 @@ function traverseFileTree(item, path) {
                 div.textContent = `${prefixPath.replaceAll('\\', '/')}${path + file.name}`;
                 div.classList.add('list-item');
                 div.path = path + file.name;
+
+                div.style.display = 'flex';
+                div.style.justifyContent = 'space-between';
+
+                div.addEventListener('contextmenu', () => {
+                    Sortable.utils.deselect(div);
+
+                    div.parentNode.removeChild(div);
+
+                    return false;
+                })
 
                 listArea.appendChild(div);
             }
@@ -102,8 +122,6 @@ dropArea.addEventListener("drop", function (event) {
 
     dropArea.classList.remove('is-dragging');
 
-    listArea.innerHTML = '';
-
     var items = event.dataTransfer.items;
 
     for (var i = 0; i < items.length; i++) {
@@ -115,7 +133,7 @@ dropArea.addEventListener("drop", function (event) {
         }
     }
 
-    Sortable.create(listArea, {
+    currentSortable = Sortable.create(listArea, {
         multiDrag: true,
         selectedClass: "selected",
         fallbackTolerance: 3, // So that we can select items on mobile
@@ -126,8 +144,7 @@ dropArea.addEventListener("drop", function (event) {
 
 buttonSave.addEventListener('click', () => {
     let text = '';
-
-    let list =listArea.querySelectorAll('.list-item');
+    let list = listArea.querySelectorAll('.list-item');
 
     list.forEach(li => {
         text += `${li.textContent}\n`;
@@ -135,3 +152,7 @@ buttonSave.addEventListener('click', () => {
 
     download(text, `${playlistNameInput.value}.txt`, 'text/plain');
 });
+
+document.body.oncontextmenu = function() {
+    return false;
+}
